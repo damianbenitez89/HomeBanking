@@ -1,5 +1,6 @@
 package com.stark.homebanking.controller;
 
+import com.stark.homebanking.dtos.ClientDTO;
 import com.stark.homebanking.models.Account;
 import com.stark.homebanking.models.Cliente;
 import com.stark.homebanking.repositories.AccountRepository;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -28,9 +30,11 @@ public class ClienteController {
     ClientRepository clientRepository;
 
     @GetMapping("/clients")
-    public List<Cliente> getAllClient(){
+    public List<ClientDTO>getAllClient(){
 
-        return clientRepository.findAll();
+        return clientRepository.findAll().stream().map(client -> new ClientDTO(client)).collect(Collectors.toList());
     }
+
+
 
 }
