@@ -1,13 +1,23 @@
 package com.stark.homebanking.dtos;
 
 
+import com.stark.homebanking.models.Account;
 import com.stark.homebanking.models.Cliente;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ClientDTO {
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
+
+    private Set<AccountDTO>  account = new HashSet<>();
+
+
+
 
     public ClientDTO(Cliente cliente) {
 
@@ -19,6 +29,16 @@ public class ClientDTO {
 
         this.email = cliente.getEmail();
 
+        this.account = cliente.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toSet());
+
+    }
+
+    public Set<AccountDTO> getAccount() {
+        return account;
+    }
+
+    public void setAccount(Set<AccountDTO> account) {
+        this.account = account;
     }
 
     public Long getId() {
@@ -52,4 +72,7 @@ public class ClientDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+
 }

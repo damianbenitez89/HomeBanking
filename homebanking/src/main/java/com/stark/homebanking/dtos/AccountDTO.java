@@ -9,7 +9,8 @@ public class AccountDTO {
     private String number;
     private LocalDateTime creationDate;
     private double balance;
-    private
+
+
 
     public AccountDTO(Account account) {
 
@@ -20,6 +21,7 @@ public class AccountDTO {
         this.creationDate = account.getCreationDate();
 
         this.balance = account.getBalance();
+
     }
 
     public Long getId() {

@@ -18,7 +18,7 @@ public class Cliente {
     private String email;
 
     @OneToMany(mappedBy="cliente", fetch=FetchType.EAGER)
-    Set<Account> accounts;
+    private Set<Account> accounts = new HashSet<>();
 
     public Cliente() { }
 
