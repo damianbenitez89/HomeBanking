@@ -12,7 +12,7 @@ fetch(url)
         
             <th scope="row">${cliente.firstName}</th>
             <td>${cliente.lastName}</td>
-            <td>@${cliente.email}</td>
+            <td>${cliente.email}</td>
         `
         table.appendChild(row)
     });

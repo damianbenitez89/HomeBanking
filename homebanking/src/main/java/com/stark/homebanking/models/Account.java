@@ -30,13 +30,12 @@ public class Account {
     public Account() {
     }
 
-    public Account(Long id, String number, LocalDateTime creationDate, double balance, Cliente cliente, Set<Transaction> transaction) {
-        this.id = id;
+    public Account(String number, LocalDateTime creationDate, double balance, Cliente cliente) {
+
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
         this.cliente = cliente;
-        this.transaction = transaction;
     }
 
     public Long getId() {

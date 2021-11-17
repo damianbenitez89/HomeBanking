@@ -23,12 +23,12 @@ public class Cliente {
 
     public Cliente() { }
 
-    public Cliente(Long id, String firstName, String lastName, String email, Set<Account> accounts) {
-        this.id = id;
+    public Cliente( String firstName, String lastName, String email) {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.accounts = accounts;
+
     }
 
     public Long getId() {return id;}

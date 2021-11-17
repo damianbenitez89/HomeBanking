@@ -25,8 +25,8 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(Long id, TransactionType type, double amount, String description, LocalDateTime date, Account account) {
-        this.id = id;
+    public Transaction(TransactionType type, double amount, String description, LocalDateTime date, Account account) {
+
         this.type = type;
         this.amount = amount;
         this.description = description;

@@ -6,7 +6,48 @@ fetch(url)
     console.log(data)
     console.log(data.account)
 
+    let lista = document.getElementById('datos')
     
+    
+    let row = document.createElement("div");
+     row.innerHTML=`
+        <ul class="list-group" >
+            <li class="list-group-item active" aria-current="true">${data.firstName} ${data.lastName}</li>
+            <li class="list-group-item">${data.email}</li>
+            <li class="list-group-item">Cuentas Asociadas</li>
+        </ul>
+        `
+        lista.appendChild(row)
+    
+
+        let pos = 0;
+    data.account.forEach(cuenta => {
+        
+        pos ++;
+        let row  = document.createElement("div");
+        row.innerHTML=`
+        
+           <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading${pos}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${pos}" aria-expanded="false" aria-controls="collapse${pos}">
+                      cuenta : ${cuenta.number}
+                    </button>
+                  </h2>
+                  <div id="collapse${pos}" class="accordion-collapse collapse " aria-labelledby="heading${pos}" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">creacion: ${cuenta.creationDate}</li>
+                            <li class="list-group-item">Balance: ${cuenta.balance}</li>
+                            <li class="list-group-item">${cuenta.transaction}</li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        `
+        lista.appendChild(row)
+    });
     
     
 })
