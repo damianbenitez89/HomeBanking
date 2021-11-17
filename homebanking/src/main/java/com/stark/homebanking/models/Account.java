@@ -5,6 +5,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Account {
@@ -21,21 +23,25 @@ public class Account {
     @JoinColumn(name="cliente_id")
     private Cliente cliente;
 
+    @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
+    private Set<Transaction> transaction = new HashSet<>();
+
 
     public Account() {
     }
 
-    public Account(long id, String number, LocalDateTime creationDate, double balance) {
+    public Account(Long id, String number, LocalDateTime creationDate, double balance, Cliente cliente, Set<Transaction> transaction) {
         this.id = id;
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
+        this.cliente = cliente;
+        this.transaction = transaction;
     }
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -43,7 +49,6 @@ public class Account {
     public String getNumber() {
         return number;
     }
-
     public void setNumber(String number) {
         this.number = number;
     }
@@ -51,7 +56,6 @@ public class Account {
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
-
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
@@ -59,17 +63,17 @@ public class Account {
     public double getBalance() {
         return balance;
     }
-
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    @JsonIgnore
     public Cliente getCliente() {
         return cliente;
     }
-
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public Set<Transaction> getTransaction() {return transaction;}
+    public void setTransaction(Set<Transaction> transaction) {this.transaction = transaction;}
 }

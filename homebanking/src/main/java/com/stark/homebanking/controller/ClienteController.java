@@ -18,14 +18,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class ClienteController {
 
-    @Autowired
-    AccountRepository accountRepository;
 
-    @GetMapping("/account")
-    public List<Account> getAllAccount(){
-
-        return accountRepository.findAll();
-    }
 
     @Autowired
     ClientRepository clientRepository;
