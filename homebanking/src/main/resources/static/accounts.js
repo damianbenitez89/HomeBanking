@@ -1,4 +1,11 @@
-let url = 'api/clients/1'
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+
+console.log(params)
+console.log(params.id)
+
+
+let url = `api/clients/1`
 
 fetch(url)
 .then(response=> response.json())
