@@ -1,11 +1,9 @@
 package com.stark.homebanking;
 
-import com.stark.homebanking.models.Account;
-import com.stark.homebanking.models.Cliente;
-import com.stark.homebanking.models.Transaction;
-import com.stark.homebanking.models.TransactionType;
+import com.stark.homebanking.models.*;
 import com.stark.homebanking.repositories.AccountRepository;
 import com.stark.homebanking.repositories.ClientRepository;
+import com.stark.homebanking.repositories.LoanRepository;
 import com.stark.homebanking.repositories.TransactionRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootApplication
 public class HomebankingApplication {
@@ -24,7 +23,10 @@ public class HomebankingApplication {
 	LocalDateTime hoy = LocalDateTime.now();
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository)  {
+	public CommandLineRunner initData(ClientRepository clientRepository,
+									  AccountRepository accountRepository,
+									  TransactionRepository transactionRepository,
+									  LoanRepository loanRepository)  {
 		return (args) -> {
 			Cliente cliente = new Cliente("Melba","Flores","melba@mindhub.com");
 			Cliente cliente2 = new Cliente("carlos","Benitez","Damianbenitez8928@gmail.com");
@@ -65,6 +67,13 @@ public class HomebankingApplication {
 			transactionRepository.save(transaction9);
 
 
+			Loan loan = new Loan("Hipotecario",500000, List.of(12,24,36,48,60));
+			Loan loan2 = new Loan("Personal",100000, List.of(6,12,24));
+			Loan loan3 = new Loan("Automotriz",300000, List.of(6,12,24,36));
+
+			loanRepository.save(loan);
+			loanRepository.save(loan2);
+			loanRepository.save(loan3);
 
 
 
