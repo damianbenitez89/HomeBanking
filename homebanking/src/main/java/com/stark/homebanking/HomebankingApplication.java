@@ -1,10 +1,7 @@
 package com.stark.homebanking;
 
 import com.stark.homebanking.models.*;
-import com.stark.homebanking.repositories.AccountRepository;
-import com.stark.homebanking.repositories.ClientRepository;
-import com.stark.homebanking.repositories.LoanRepository;
-import com.stark.homebanking.repositories.TransactionRepository;
+import com.stark.homebanking.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,7 +23,8 @@ public class HomebankingApplication {
 	public CommandLineRunner initData(ClientRepository clientRepository,
 									  AccountRepository accountRepository,
 									  TransactionRepository transactionRepository,
-									  LoanRepository loanRepository)  {
+									  LoanRepository loanRepository,
+									  ClientLoanRepository clientLoanRepository)  {
 		return (args) -> {
 			Cliente cliente = new Cliente("Melba","Flores","melba@mindhub.com");
 			Cliente cliente2 = new Cliente("carlos","Benitez","Damianbenitez8928@gmail.com");
@@ -75,8 +73,15 @@ public class HomebankingApplication {
 			loanRepository.save(loan2);
 			loanRepository.save(loan3);
 
+			ClientLoan clientLoan  = new ClientLoan(400000,60,cliente,loan);
+			ClientLoan clientLoan2 = new ClientLoan(50000 ,12,cliente,loan2);
+			ClientLoan clientLoan3 = new ClientLoan(100000,24,cliente2,loan);
+			ClientLoan clientLoan4 = new ClientLoan(200000,36,cliente2,loan3);
 
-
+			clientLoanRepository.save(clientLoan);
+			clientLoanRepository.save(clientLoan2);
+			clientLoanRepository.save(clientLoan3);
+			clientLoanRepository.save(clientLoan4);
 
 		};
 	}

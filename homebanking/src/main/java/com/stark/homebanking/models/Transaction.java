@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     @GenericGenerator(name= "native,",strategy = "native")
     private Long id;
     private TransactionType type; //puede tener dos valores
@@ -51,4 +51,5 @@ public class Transaction {
     @JsonIgnore
     public Account getAccount() {return account;}
     public void setAccount(Account account) {this.account = account;}
+
 }

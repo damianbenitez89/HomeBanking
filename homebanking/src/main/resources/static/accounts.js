@@ -1,8 +1,3 @@
-const urlSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
-
-console.log(params)
-console.log(params.id)
 
 
 let url = `api/clients/1`
@@ -12,6 +7,9 @@ fetch(url)
 .then(data=>{
     console.log(data)
     console.log(data.account)
+    console.log(data.loans)
+    
+    
 
     let lista = document.getElementById('datos')
     
@@ -29,6 +27,20 @@ fetch(url)
 
         let pos = 0;
     data.account.forEach(cuenta => {
+
+      let transactionWeb = document.createElement("ul");
+
+      cuenta.transaction.forEach(transaction=> {
+
+        let row = document.createElement("div");
+       row.innerHTML=` <li class="list-group-item">creacion: ${transaction.type}</li>
+        <li class="list-group-item">Balance: ${transaction.amount}</li>
+        <li class="list-group-item">creacion: ${transaction.date}</li>
+        <li class="list-group-item">Balance: ${transaction.description}</li>`
+
+        transactionWeb.appendChild(row)
+
+      });
         
         pos ++;
         let row  = document.createElement("div");
@@ -46,7 +58,7 @@ fetch(url)
                         <ul class="list-group">
                             <li class="list-group-item">creacion: ${cuenta.creationDate}</li>
                             <li class="list-group-item">Balance: ${cuenta.balance}</li>
-                            <li class="list-group-item">${cuenta.transaction}</li>
+                            ${transactionWeb}
                         </ul>
                     </div>
                   </div>
@@ -55,7 +67,38 @@ fetch(url)
         `
         lista.appendChild(row)
     });
+
+    let listaPrestamos = document.getElementById('prestamos')
     
+    data.loans.forEach(loan => {
+
+      console.log(loan)
+        
+      pos ++;
+      let row  = document.createElement("div");
+      row.innerHTML=`
+      
+         <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading${pos}">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${pos}" aria-expanded="false" aria-controls="collapse${pos}">
+                    Prestamo : ${loan.name}
+                  </button>
+                </h2>
+                <div id="collapse${pos}" class="accordion-collapse collapse " aria-labelledby="heading${pos}" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <ul class="list-group">
+                          <li class="list-group-item">Monto: ${loan.amount}</li>
+                          <li class="list-group-item">Pagos: ${loan.payments}</li>
+                  
+                      </ul>
+                  </div>
+                </div>
+              </div>
+          </div>
+      `
+      listaPrestamos.appendChild(row)
+  });
     
 })
 

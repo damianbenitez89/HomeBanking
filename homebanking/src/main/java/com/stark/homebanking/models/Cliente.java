@@ -4,13 +4,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity //con esto digo que esta clase es una entidad y tiene que tener clave primaria
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")// para no pensar como generar secuencialmente  uso estas aotaciones
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")// para no pensar como generar secuencialmente  uso estas aotaciones
     @GenericGenerator(name= "native,",strategy = "native") //generar id de los regstros para que sean unicos
     private Long id;
     private String firstName;
@@ -19,6 +21,9 @@ public class Cliente {
 
     @OneToMany(mappedBy="cliente", fetch=FetchType.EAGER)
     private Set<Account> accounts = new HashSet<>();
+
+    @OneToMany(mappedBy="cliente", fetch=FetchType.EAGER)
+    private Set<ClientLoan> clientLoans = new HashSet<>();
 
 
     public Cliente() { }
@@ -29,6 +34,10 @@ public class Cliente {
         this.lastName = lastName;
         this.email = email;
 
+    }
+
+    public List<Loan> getLoans() {
+        return clientLoans.stream().map(clientLoan -> clientLoan.getLoan()).collect(Collectors.toList());
     }
 
     public Long getId() {return id;}
@@ -62,6 +71,19 @@ public class Cliente {
     }
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public void addAccount(Account account){
+        account.setCliente(this);
+        this.accounts.add(account);
+    }
+
+    public Set<ClientLoan> getClientLoans() {return clientLoans;}
+    public void setClientLoans(Set<ClientLoan> clientLoans) {this.clientLoans = clientLoans;}
+
+    public void addClientLoan(ClientLoan clientLoan) {
+        clientLoan.setCliente(this);
+        this.clientLoans.add(clientLoan);
     }
 
 }

@@ -12,7 +12,7 @@ import java.util.Set;
 public class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     @GenericGenerator(name= "native,",strategy = "native")
     private Long id;
     private String number;
@@ -37,6 +37,8 @@ public class Account {
         this.balance = balance;
         this.cliente = cliente;
     }
+
+
 
     public Long getId() {
         return id;
@@ -65,7 +67,7 @@ public class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-
+    @JsonIgnore
     public Cliente getCliente() {
         return cliente;
     }
@@ -75,4 +77,9 @@ public class Account {
 
     public Set<Transaction> getTransaction() {return transaction;}
     public void setTransaction(Set<Transaction> transaction) {this.transaction = transaction;}
+
+    public void addTransaction(Transaction transaction) {
+        transaction.setAccount(this);
+        this.transaction.add(transaction);
+    }
 }
