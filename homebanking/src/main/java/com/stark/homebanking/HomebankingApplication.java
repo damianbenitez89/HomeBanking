@@ -24,7 +24,8 @@ public class HomebankingApplication {
 									  AccountRepository accountRepository,
 									  TransactionRepository transactionRepository,
 									  LoanRepository loanRepository,
-									  ClientLoanRepository clientLoanRepository)  {
+									  ClientLoanRepository clientLoanRepository,
+									  CardRepository cardRepository)  {
 		return (args) -> {
 			Cliente cliente = new Cliente("Melba","Flores","melba@mindhub.com");
 			Cliente cliente2 = new Cliente("carlos","Benitez","Damianbenitez8928@gmail.com");
@@ -82,6 +83,14 @@ public class HomebankingApplication {
 			clientLoanRepository.save(clientLoan2);
 			clientLoanRepository.save(clientLoan3);
 			clientLoanRepository.save(clientLoan4);
+
+			Card card1 = new Card(cliente,cliente.getFirstName()+" "+cliente.getLastName(),CardType.CREDIT,CardColor.SILVER,"2634-6755-2352-5628",426,LocalDateTime.now(),LocalDateTime.now().plusYears(5));
+			Card card2 = new Card(cliente,cliente.getFirstName()+" "+cliente.getLastName(), CardType.CREDIT, CardColor.TITANIUM, "2234-6745-552-7888",750, LocalDateTime.now(),LocalDateTime.now().plusYears(5));
+			Card card3 = new Card(cliente2,cliente2.getFirstName()+" "+cliente2.getLastName(), CardType.CREDIT, CardColor.SILVER, "5551-222-5343-5390",750, LocalDateTime.now(),LocalDateTime.now().plusYears(5));
+
+			cardRepository.save(card1);
+			cardRepository.save(card2);
+			cardRepository.save(card3);
 
 		};
 	}
