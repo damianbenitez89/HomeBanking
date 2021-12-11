@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")

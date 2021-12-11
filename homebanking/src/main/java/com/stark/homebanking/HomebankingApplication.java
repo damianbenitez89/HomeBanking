@@ -84,13 +84,20 @@ public class HomebankingApplication {
 			clientLoanRepository.save(clientLoan3);
 			clientLoanRepository.save(clientLoan4);
 
-			Card card1 = new Card(cliente,cliente.getFirstName()+" "+cliente.getLastName(),CardType.CREDIT,CardColor.SILVER,"2634-6755-2352-5628",426,LocalDateTime.now(),LocalDateTime.now().plusYears(5));
-			Card card2 = new Card(cliente,cliente.getFirstName()+" "+cliente.getLastName(), CardType.CREDIT, CardColor.TITANIUM, "2234-6745-552-7888",750, LocalDateTime.now(),LocalDateTime.now().plusYears(5));
-			Card card3 = new Card(cliente2,cliente2.getFirstName()+" "+cliente2.getLastName(), CardType.CREDIT, CardColor.SILVER, "5551-222-5343-5390",750, LocalDateTime.now(),LocalDateTime.now().plusYears(5));
+			Card card1 = new Card(cliente,cliente.getFirstName()+" "+cliente.getLastName(),CardType.CREDIT,CardColor.GOLD,"2634 6755 2352 5628",426,LocalDateTime.now(),LocalDateTime.now().plusYears(5));
+			Card card2 = new Card(cliente,cliente.getFirstName()+" "+cliente.getLastName(), CardType.CREDIT, CardColor.TITANIUM, "2234 6745 552 7888",750, LocalDateTime.now(),LocalDateTime.now().plusYears(5));
+			Card card3 = new Card(cliente2,cliente2.getFirstName()+" "+cliente2.getLastName(), CardType.CREDIT, CardColor.SILVER, "5551 2226 5343 5390",485, LocalDateTime.now(),LocalDateTime.now().plusYears(5));
+			Card card4 = new Card(cliente,cliente.getFirstName()+" "+cliente.getLastName(),CardType.DEBIT,CardColor.GOLD,"6554 6592 1458 6982",362,LocalDateTime.now(),LocalDateTime.now().plusYears(5));
+			Card card5 = new Card(cliente,cliente.getFirstName()+" "+cliente.getLastName(), CardType.CREDIT, CardColor.SILVER, "9862 1578 3618 9515",525, LocalDateTime.now(),LocalDateTime.now().plusYears(5));
+			Card card6 = new Card(cliente2,cliente2.getFirstName()+" "+cliente2.getLastName(), CardType.CREDIT, CardColor.SILVER, "9821 6581 4896 3298",483, LocalDateTime.now(),LocalDateTime.now().plusYears(5));
+
 
 			cardRepository.save(card1);
 			cardRepository.save(card2);
 			cardRepository.save(card3);
+			cardRepository.save(card4);
+			cardRepository.save(card5);
+			cardRepository.save(card6);
 
 		};
 	}
