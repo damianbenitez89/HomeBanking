@@ -2,16 +2,20 @@ package com.stark.homebanking;
 
 import com.stark.homebanking.models.*;
 import com.stark.homebanking.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootApplication
 public class HomebankingApplication {
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
 
@@ -27,8 +31,8 @@ public class HomebankingApplication {
 									  ClientLoanRepository clientLoanRepository,
 									  CardRepository cardRepository)  {
 		return (args) -> {
-			Cliente cliente = new Cliente("Melba","Flores","melba@mindhub.com","123456");
-			Cliente cliente2 = new Cliente("carlos","Benitez","Damianbenitez8928@gmail.com","35081213a");
+			Cliente cliente = new Cliente("Melba","Flores","melba@mindhub.com", passwordEncoder.encode("123456"));
+			Cliente cliente2 = new Cliente("carlos","Benitez","Damianbenitez8928@gmail.com", passwordEncoder.encode("35081213a"));
 
 			clientRepository.save(cliente);
 			clientRepository.save(cliente2);
