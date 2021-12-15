@@ -29,7 +29,7 @@ public class Card {
     public Card() {
     }
 
-    public Card(Cliente cliente, String cardHolder, CardType type, CardColor color, String number,int cvv, LocalDateTime thruDate, LocalDateTime fromDate) {
+    public Card(Cliente cliente, String cardHolder, CardType type, CardColor color, String number,int cvv, LocalDateTime fromDate , LocalDateTime thruDate ) {
         this.cliente = cliente;
         this.cardHolder = cardHolder;
         this.type = type;

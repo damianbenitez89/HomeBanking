@@ -27,8 +27,8 @@ public class HomebankingApplication {
 									  ClientLoanRepository clientLoanRepository,
 									  CardRepository cardRepository)  {
 		return (args) -> {
-			Cliente cliente = new Cliente("Melba","Flores","melba@mindhub.com");
-			Cliente cliente2 = new Cliente("carlos","Benitez","Damianbenitez8928@gmail.com");
+			Cliente cliente = new Cliente("Melba","Flores","melba@mindhub.com","123456");
+			Cliente cliente2 = new Cliente("carlos","Benitez","Damianbenitez8928@gmail.com","35081213a");
 
 			clientRepository.save(cliente);
 			clientRepository.save(cliente2);
