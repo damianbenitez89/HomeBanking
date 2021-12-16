@@ -21,7 +21,7 @@ z-index: 1000;
   display: inline-block;
     width: 320px;
     height: 190px;
-    background-image: url('.img/titanium.jpg'); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
+    background-image: url('/img/titanium.jpg'); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -47,7 +47,7 @@ z-index: 1000;
     display: inline-block;
       width: 320px;
       height: 190px;
-      background-image: url('.img/gold.jpg'); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
+      background-image: url('/img/gold.jpg'); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
@@ -73,7 +73,7 @@ z-index: 1000;
     display: inline-block;
       width: 320px;
       height: 190px;
-      background-image: url('.img/silver.jpg'); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
+      background-image: url('/img/silver.jpg'); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
@@ -99,7 +99,7 @@ z-index: 1000;
     display: inline-block;
       width: 320px;
       height: 190px;
-      background-image: url('img/debit.jpg'); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
+      background-image: url('/img/debit.jpg'); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
