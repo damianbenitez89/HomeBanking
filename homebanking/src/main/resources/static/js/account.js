@@ -62,3 +62,10 @@ fetch(url)
 })
 
 .catch(err=>console.log(err))
+
+
+async function logOut(){
+    axios.post('/api/logout')
+    .then(response => window.location.href="index.html")
+
+}
