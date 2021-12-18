@@ -1,6 +1,6 @@
 
 
-let url = `api/clients/1`
+let url = `api/clients/current`
 
 fetch(url)
 .then(response=> response.json())
