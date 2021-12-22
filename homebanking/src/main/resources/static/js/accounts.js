@@ -99,6 +99,22 @@ fetch(url)
       `
       listaPrestamos.appendChild(row)
   });
+
+
+
+  // crear botton crear cuenta
+  let acount = 2
+
+  let botonA = `<button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Crear cuenta</button>`
+  let botonD = `<button type="button" class="btn btn-primary" disabled data-bs-toggle="button" autocomplete="off">Crear Cuenta</button>`
+
+  let botonCreate = document.getElementById('createAccount')
+
+  if (acount <=3){
+    botonCreate.innerHTML=botonA
+  }else{
+    botonCreate.innerHTML=botonD
+  }
     
 })
 
@@ -109,3 +125,6 @@ async function logOut(){
     .then(response => window.location.href="index.html")
 
 }
+
+
+

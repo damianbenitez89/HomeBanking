@@ -55,4 +55,9 @@ public class AccountController {
        accountRepository.save(new Account(accountNumber, LocalDateTime.now(),0,cliente));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    @GetMapping("/clients/current/accounts")
+    public List<AccountDTO>getAccounts(Authentication authentication){
+        Cliente cliente = this.clientRepository.findByEmail(authentication.getName());
+        return cliente.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
+    }
 }
