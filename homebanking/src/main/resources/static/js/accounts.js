@@ -8,6 +8,7 @@ fetch(url)
     console.log(data)
     console.log(data.account)
     console.log(data.loans)
+    console.log(data.account[0].transaction)
     
     
 
@@ -24,25 +25,38 @@ fetch(url)
         `
         lista.appendChild(row)
     
-
+        let table = document.getElementById('table')
+        let tamañoAccount = 0
         let pos = 0;
     data.account.forEach(cuenta => {
+      cuenta.transaction.forEach(transaction => {
 
-      let transactionWeb = document.createElement("ul");
 
-      cuenta.transaction.forEach(transaction=> {
+        let row = document.createElement("tr");
 
-        let row = document.createElement("div");
-       row.innerHTML=` <li class="list-group-item">creacion: ${transaction.type}</li>
-        <li class="list-group-item">Balance: ${transaction.amount}</li>
-        <li class="list-group-item">creacion: ${transaction.date}</li>
-        <li class="list-group-item">Balance: ${transaction.description}</li>`
-
-        transactionWeb.appendChild(row)
-
-      });
+        if(transaction.type=="DEBITO"){
+             row.innerHTML=`
         
-        pos ++;
+            <th scope="row">${transaction.type}</th>
+            <td class="bg-danger">${transaction.amount}</td>
+            <td>${transaction.description}</td>
+            <td>${transaction.date}</td>
+        `
+        table.appendChild(row)
+        }else{
+            row.innerHTML=`
+        
+            <th scope="row">${transaction.type}</th>
+            <td class="bg-success">${transaction.amount}</td>
+            <td>${transaction.description}</td>
+            <td>${transaction.date}</td>
+        `
+        table.appendChild(row)
+        }
+      
+        let dam= `<li class="list-group-item">creacion: damian</li>`
+    });
+      
         let row  = document.createElement("div");
         row.innerHTML=`
         
@@ -58,14 +72,18 @@ fetch(url)
                         <ul class="list-group">
                             <li class="list-group-item">creacion: ${cuenta.creationDate}</li>
                             <li class="list-group-item">Balance: ${cuenta.balance}</li>
-                            ${transactionWeb}
+                            
                         </ul>
                     </div>
                   </div>
                 </div>
             </div>
         `
+        
         lista.appendChild(row)
+        
+        tamañoAccount ++
+        pos ++;
     });
 
     let listaPrestamos = document.getElementById('prestamos')
@@ -103,14 +121,14 @@ fetch(url)
 
 
   // crear botton crear cuenta
-  let acount = 2
+
 
   let botonA = `<button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Crear cuenta</button>`
   let botonD = `<button type="button" class="btn btn-primary" disabled data-bs-toggle="button" autocomplete="off">Crear Cuenta</button>`
 
   let botonCreate = document.getElementById('createAccount')
-
-  if (acount <=3){
+  console.log(tamañoAccount)
+  if (tamañoAccount <3){
     botonCreate.innerHTML=botonA
   }else{
     botonCreate.innerHTML=botonD
@@ -126,5 +144,19 @@ async function logOut(){
 
 }
 
+
+async function crearCuenta(){
+
+
+
+axios.post('/api/clients/current/accounts')
+.then(response => alert("Se creo una cuenta correctamente"))
+.then(response => window.location.reload())
+.catch(() =>{
+    alert("no se puede crear cuenta")
+
+})
+
+}
 
 

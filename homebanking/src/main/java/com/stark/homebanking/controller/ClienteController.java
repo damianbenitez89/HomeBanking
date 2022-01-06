@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class ClienteController {
 
-
+    @Autowired
+    AccountRepository accountRepository;
 
     @Autowired
     ClientRepository clientRepository;
@@ -60,7 +62,10 @@ public class ClienteController {
             return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
         }
 
-        clientRepository.save(new Cliente(firstName, lastName, email, passwordEncoder.encode(password)));
+
+        Cliente cliente = clientRepository.save(new Cliente(firstName, lastName, email, passwordEncoder.encode(password)));
+        String accountNumber = "VIN"+(int)((Math.random()*(10000000-1))+1);
+        accountRepository.save(new Account(accountNumber, LocalDateTime.now(),0,cliente));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

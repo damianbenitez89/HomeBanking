@@ -4,7 +4,7 @@ fetch(url)
 .then(response=> response.json())
 .then(data=>{
     console.log(data)
-    console.log(data.cards)
+    console.log(data.cards)//verifico los datos
     
     let cardCredit = document.getElementById('cardsCredit')
 

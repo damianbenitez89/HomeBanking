@@ -11,6 +11,7 @@ async function register(){
   axios.post('/api/clients',`firstName=${firstName}&lastName=${lastName}&email=${email}&password=${password}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
   .then(response => alert("te has registrado con exito"))
   .then(response => window.location.href="index.html")
+
   .catch(() =>{
       alert("email ya registrado")
 
